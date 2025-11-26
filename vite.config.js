@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   root: "App",
   publicDir: "public",
-  base: "/for-juniors/",
+  base: process.env.BASE_URL || "/for-juniors/",
   build: {
     outDir: "../build",
     emptyOutDir: true,

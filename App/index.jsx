@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 function App() {
   const [showModal, setShowModal] = useState(false);
   const [showGiftMessage, setShowGiftMessage] = useState(false);
@@ -56,20 +58,20 @@ function App() {
   return (
     <>
       <header>
-        <img src="/cts.png" width="55px" alt="" />
+        <img src={`${BASE_URL}cts.png`} width="55px" alt="" />
         <br />
         <div>
-          <img src="/dcst.png" width="33px" />
-          <img src="/c.png" width="32px" />
-          <img src="/js.png" width="30px" />
-          <img src="/12.png" width="31px" />
+          <img src={`${BASE_URL}dcst.png`} width="33px" />
+          <img src={`${BASE_URL}c.png`} width="32px" />
+          <img src={`${BASE_URL}js.png`} width="30px" />
+          <img src={`${BASE_URL}12.png`} width="31px" />
         </div>
       </header>
 
       <main>
         <div className="more">
           <div className="content-wrapper">
-            <img src="/character.png" width="200px" />
+            <img src={`${BASE_URL}character.png`} width="200px" />
             <p>Aro&nbsp;gift&nbsp;lagbe?</p>
             <p>&nbsp;</p>
             <br />
@@ -93,13 +95,13 @@ function App() {
           <p>( laugh now, you will relate later 😁 )</p>
         </div>
         <div className="gallery">
-          <img src="/meme/meme.jpeg" alt="Meme 1" />
+          <img src={`${BASE_URL}meme/meme.jpeg`} alt="Meme 1" />
           <br />
-          <img src="/meme/2.jpg" alt="Meme 2" />
+          <img src={`${BASE_URL}meme/2.jpg`} alt="Meme 2" />
           <br />
-          <img src="/meme/3.jpg" alt="Meme 3" />
+          <img src={`${BASE_URL}meme/3.jpg`} alt="Meme 3" />
           <br />
-          <img src="/meme/4.jpg" alt="Meme 3" />
+          <img src={`${BASE_URL}meme/4.jpg`} alt="Meme 3" />
           <br />
         </div>
 
@@ -116,7 +118,7 @@ function App() {
         </div>
 
         <div className="gift-popup" onClick={handleGiftClick}>
-          <img src="/gift.png" alt="gift-box" />
+          <img src={`${BASE_URL}gift.png`} alt="gift-box" />
           <p>Click kor ekhane</p>
         </div>
 
@@ -134,7 +136,7 @@ function App() {
                 &times;
               </span>
               <video
-                src="/rol.mp4"
+                src={`${BASE_URL}rol.mp4`}
                 type="video/mp4"
                 controls
                 loop
