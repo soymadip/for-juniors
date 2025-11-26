@@ -1,5 +1,5 @@
 <div align="center">
-  <h1 >Freshers 2024</h1>
+  <h1 >Freshers 2024-25</h1>
   <p>
       This project is aimed at freshers joining in 2024-25.
       <br>
