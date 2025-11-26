@@ -31,16 +31,19 @@ const Home = () => {
     useEffect(() => {
         if (showModal) {
             document.body.classList.add("no-scroll");
+            document.documentElement.classList.add("no-scroll");
             if (videoRef.current) {
                 videoRef.current.currentTime = 0;
                 videoRef.current.play();
             }
         } else {
             document.body.classList.remove("no-scroll");
+            document.documentElement.classList.remove("no-scroll");
         }
 
         return () => {
             document.body.classList.remove("no-scroll");
+            document.documentElement.classList.remove("no-scroll");
         };
     }, [showModal]);
 
