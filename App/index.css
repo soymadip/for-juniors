@@ -1,0 +1,382 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+/* Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    color: #131212;
+    text-align: center;
+    background-color: rgba(234, 235, 149, 0.539);
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 92%;
+    z-index: 1000;
+    margin: 0.3rem 0;
+    margin-top: 2vh;
+    padding: 5px;
+    background: rgba(232, 247, 243, 0.818);
+    border-radius: 12px;
+}
+
+/* Main Content */
+main {
+    margin: 8vh auto 0;
+    max-width: 1200px;
+    width: 92%;
+    border-radius: 5px;
+}
+
+/* Section Titles */
+h2 {
+    margin: 1rem 0;
+    align-content: left;
+    scroll-margin-top: 80px;
+}
+
+
+
+.more {
+    height: 120vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Ga Maamli", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: min(9rem, 8vw);
+    white-space: nowrap;
+    color: #adb41d;
+    padding-top: 60px;
+}
+
+.more-videos {
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Ga Maamli", serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: min(9rem, 8vw);
+    white-space: nowrap;
+    color: #1ceba9;
+}
+
+.more-videos2 {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Ga Maamli", serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: min(9rem, 8vw);
+    white-space: nowrap;
+    color: #1ceba9;
+}
+
+.more-videos3 {
+    height: 1vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Ga Maamli", serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: min(9rem, 8vw);
+    white-space: nowrap;
+    color: #1ceba9;
+    margin-bottom: 9rem;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -19vh;
+}
+
+.scroll-indicator {
+    font-size: 1.1rem;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    margin-top: auto;
+    padding: 2rem;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+}
+
+.scroll-indicator p {
+    animation: fadeInOut 2s infinite;
+    opacity: 0.7;
+    padding: 0.5rem 1.7rem;
+}
+
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes arrowBounce {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: translateY(10px) rotate(45deg);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-30px);
+    }
+
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+#memes-section {
+    margin: 1rem;
+    padding-top: 10vh;
+}
+
+#memes-section h1 {
+    font-size: 3.1rem;
+    text-decoration: underline #adb41d;
+    margin-bottom: 1vh;
+}
+
+#memes-section p {
+    color: rgba(78, 108, 67, 0.721);
+    font-size: 11px;
+    margin-bottom: 3rem;
+}
+
+/* Gallery Styling */
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15rem;
+}
+
+.gallery img {
+    border: #d94826 solid;
+    align-content: center;
+    max-width: 300px;
+    max-height: max-content;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+.gallery img:hover,
+.video-gallery video:hover {
+    transform: scale(1.1);
+    box-shadow: #adb41d 0px 0px 10px;
+}
+
+.scroll-indicator-videos {
+    display: none;
+}
+
+.arrow {
+    width: 30px;
+    height: 30px;
+    border-right: 4px solid #131212;
+    border-bottom: 4px solid #131212;
+    transform: rotate(45deg);
+    animation: arrowBounce 2s infinite;
+    margin: 1rem;
+}
+
+.video-gallery-h2 {
+    font-size: 3.1rem;
+    text-decoration: underline #adb41d;
+    margin-bottom: 1vh;
+    padding-top: 70px;
+}
+
+.video-gallery-p {
+    color: rgba(78, 108, 67, 0.721);
+    font-size: 11px;
+    margin-bottom: 7rem;
+}
+
+.video-gallery-p a {
+    text-decoration: none;
+    color: rgb(233, 193, 117);
+}
+
+.video-gallery-p a:hover {
+    text-decoration: underline;
+}
+
+.video-gallery video {
+    margin: 1rem auto;
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s;
+    margin-bottom: 12vh;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    background-color: #408797;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-content video {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #808319;
+}
+
+.modal-content p {
+    margin-top: 10px;
+    font-family: "Comic Neue", serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #3e4214;
+}
+
+.close-button {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: rgb(123, 210, 133);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.gift-popup {
+    margin-top: 25vh;
+    margin-bottom: 10rem;
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+
+.gift-popup p {
+    color: #1ceba9;
+    font-family: "Ga Maamli", serif;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+footer {
+    margin-top: 30px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.77);
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+footer a {
+    color: #533110;
+}
+
+.no-scroll {
+    overflow: hidden !important;
+}
+
+@media (max-width: 768px) {
+    .more {
+        font-size: min(12vw, 3rem);
+        white-space: normal;
+    }
+
+    .more-videos,
+    .more-videos2,
+    .more-videos3 {
+        font-size: min(12vw, 3rem);
+        white-space: normal;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .close-button {
+        top: -15px;
+        right: -10px;
+        width: 35px;
+        height: 35px;
+        font-size: 24px;
+    }
+}

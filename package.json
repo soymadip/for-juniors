@@ -1,0 +1,22 @@
+{
+  "name": "for-juniors",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@vitejs/plugin-react": "^5.1.1",
+    "vite": "^7.2.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "bun i && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
+}
