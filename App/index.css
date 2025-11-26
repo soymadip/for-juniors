@@ -232,37 +232,77 @@ h2 {
     margin: 1rem;
 }
 
+.video-gallery-container {
+    max-width: 900px;
+    margin: 8rem 2rem 4rem;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@media (min-width: 768px) {
+    .video-gallery-container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 .video-gallery-h2 {
-    font-size: 3.1rem;
-    text-decoration: underline #adb41d;
-    margin-bottom: 1vh;
-    padding-top: 70px;
+    font-family: "Ga Maamli", serif;
+    font-size: 3rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    padding-top: 0;
+    text-decoration: none;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .video-gallery-p {
-    color: rgba(78, 108, 67, 0.721);
-    font-size: 11px;
-    margin-bottom: 7rem;
+    font-family: "Comic Neue", cursive;
+    color: #4a5568;
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    font-weight: 700;
 }
 
 .video-gallery-p a {
     text-decoration: none;
-    color: rgb(233, 193, 117);
+    color: #e67e22;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .video-gallery-p a:hover {
+    color: #d35400;
     text-decoration: underline;
 }
 
-.video-gallery video {
-    margin: 1rem auto;
+.video-gallery {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.video-gallery:hover {
+    transform: scale(1.02);
+}
+
+.video-gallery iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 1200px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    transition: transform 0.2s;
-    margin-bottom: 12vh;
+    height: 100%;
+    border: none;
 }
 
 .modal {

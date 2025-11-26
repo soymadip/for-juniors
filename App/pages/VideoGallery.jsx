@@ -1,4 +1,3 @@
-import React from "react";
 import "../index.css";
 
 const VideoGallery = () => {
@@ -14,14 +13,15 @@ const VideoGallery = () => {
                 " )
             </p>
             <div className="video-gallery">
-                <video
+                <iframe
                     className="lazy-video"
-                    src="https://github.com/soymadip/for-juniors/releases/download/1/lalbari.mp4"
-                    loop
-                    controls
-                >
-                    Your browser does not support the video tag. Please use Chrome browser.
-                </video>
+                    width="100%"
+                    height="500"
+                    src="https://www.youtube.com/embed/GV5gTDwQ_yA?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0&showinfo=0"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                ></iframe>
             </div>
         </div>
     );
