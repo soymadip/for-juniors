@@ -97,15 +97,10 @@ const Home = () => {
                 </div>
                 <div className="gallery">
                     <img src={`${BASE_URL}meme/meme.jpeg`} alt="Meme 1" />
-                    <br />
                     <img src={`${BASE_URL}meme/2.jpg`} alt="Meme 2" />
-                    <br />
                     <img src={`${BASE_URL}meme/3.jpg`} alt="Meme 3" />
-                    <br />
                     <img src={`${BASE_URL}meme/4.jpg`} alt="Meme 3" />
-                    <br />
                     <img src={`${BASE_URL}meme/5.jpg`} alt="Meme 5" />
-                    <br />
                 </div>
 
                 <div className="more-videos">

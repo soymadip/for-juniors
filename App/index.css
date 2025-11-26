@@ -232,10 +232,19 @@ h2 {
     margin: 1rem;
 }
 
+.video-gallery-page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
 .video-gallery-container {
     max-width: 900px;
-    margin: 8rem 2rem 4rem;
-    padding: 3rem;
+    width: 90%;
+    margin: 0 auto;
+    padding: 2rem;
     background: rgba(255, 255, 255, 0.85);
     border-radius: 20px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
