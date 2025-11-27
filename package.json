@@ -11,9 +11,9 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "dev": "bun i && vite",
+    "dev": "bun i && vite --host",
     "build": "bun i && vite build",
-    "preview": "vite preview"
+    "preview": "bun build && vite preview"
   },
   "dependencies": {
     "react": "^19.2.0",
