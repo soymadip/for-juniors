@@ -96,7 +96,6 @@ const Home = () => {
                     <img src={`${BASE_URL}meme/2.jpg`} alt="Meme 2" />
                     <img src={`${BASE_URL}meme/3.jpg`} alt="Meme 3" />
                     <img src={`${BASE_URL}meme/4.jpg`} alt="Meme 4" />
-                    <img src={`${BASE_URL}meme/5.jpg`} alt="Meme 5" />
                 </div>
 
                 <div className="more-videos">
