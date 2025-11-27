@@ -60,7 +60,7 @@ const Home = () => {
         <>
             <header>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <img src={`${BASE_URL}cts.png`} width="55px" alt="CTS Logo" style={{ filter: 'drop-shadow(2px 2px 0px #000)' }} />
+                    <img src={`${BASE_URL}cts.png`} width="45px" alt="CTS Logo" style={{ filter: 'drop-shadow(2px 2px 0px #000)' }} />
                     <div style={{ marginTop: '5px', display: 'flex', gap: '5px' }}>
                         <img src={`${BASE_URL}dcst.png`} width="33px" alt="DCST Logo" style={{ filter: 'drop-shadow(2px 2px 0px #000)' }} />
                         <img src={`${BASE_URL}c.png`} width="32px" alt="C Logo" style={{ filter: 'drop-shadow(2px 2px 0px #000)' }} />
