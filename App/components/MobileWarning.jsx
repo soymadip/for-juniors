@@ -3,6 +3,8 @@ import "./MobileWarning.css";
 
 const MobileWarning = () => {
     const [showMobileWarning, setShowMobileWarning] = useState(false);
+    const [showBrokenLayoutWarning, setShowBrokenLayoutWarning] = useState(false);
+    const [countdown, setCountdown] = useState(4);
 
     useEffect(() => {
         let timeoutId;
@@ -29,23 +31,49 @@ const MobileWarning = () => {
         };
     }, []);
 
+    useEffect(() => {
+        let timer;
+        if (showBrokenLayoutWarning && countdown > 0) {
+            timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+        } else if (showBrokenLayoutWarning && countdown === 0) {
+            setShowMobileWarning(false);
+            setShowBrokenLayoutWarning(false);
+        }
+        return () => clearTimeout(timer);
+    }, [showBrokenLayoutWarning, countdown]);
+
+    const handleContinue = () => {
+        setShowBrokenLayoutWarning(true);
+        setCountdown(4);
+    };
+
     if (!showMobileWarning) return null;
 
     return (
         <div className="mobile-warning-modal">
             <div className="warning-content">
-                <h2>Wait a minute! 🛑</h2>
-                <p>This website is made for mobile devices.</p>
-                <p>Please open it on your phone for the best experience!</p>
-                <button onClick={() => window.location.reload()}>
-                    Okay, I understand
-                </button>
-                <p
-                    className="override-button"
-                    onClick={() => setShowMobileWarning(false)}
-                >
-                    Continue anyway (I know what I'm doing)
-                </p>
+                {!showBrokenLayoutWarning ? (
+                    <>
+                        <h2>Wait a minute! 🛑</h2>
+                        <p><b>This website is made for mobile devices.</b></p>
+                        <p>Please <b>open it on your phone</b> for the best experience!</p>
+                        <button onClick={() => window.location.reload()}>
+                            Okay, I understand
+                        </button>
+                        <p
+                            className="override-button"
+                            onClick={handleContinue}
+                        >
+                            Continue anyway (I know what I'm doing)
+                        </p>
+                    </>
+                ) : (
+                    <>
+                        <h2>⚠️ Warning ⚠️</h2>
+                        <p><b>Styling and elements might be broken on this screen size.</b></p>
+                        <p>Proceeding in {countdown} seconds...</p>
+                    </>
+                )}
             </div>
         </div>
     );
