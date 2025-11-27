@@ -8,9 +8,10 @@ const BASE_URL = import.meta.env.BASE_URL;
 const Home = () => {
     const [showModal, setShowModal] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
-    const [showGiftMessage, setShowGiftMessage] = useState(false);
+    const [giftViewed, setGiftViewed] = useState(false);
     const videoRef = useRef(null);
     const memesSectionRef = useRef(null);
+    const gallerySectionRef = useRef(null);
 
     const settings = {
         dots: true,
@@ -50,6 +51,15 @@ const Home = () => {
         const memesSectionTop = memesSectionRef.current.offsetTop; // Get the top position of the memes section
         window.scrollTo({
             top: memesSectionTop - headerHeight, // Scroll to the memes section with an adjusted offset
+            behavior: "smooth",
+        });
+    };
+
+    const handleGalleryScrollClick = () => {
+        const headerHeight = document.querySelector("header").offsetHeight + 60;
+        const gallerySectionTop = gallerySectionRef.current.offsetTop;
+        window.scrollTo({
+            top: gallerySectionTop - headerHeight,
             behavior: "smooth",
         });
     };
@@ -172,9 +182,18 @@ const Home = () => {
                             </div>
                         </Slider>
                     </div>
+
+                    <div
+                        className="scroll-indicator small"
+                        role="button"
+                        onClick={handleGalleryScrollClick}
+                        style={{ margin: '-1.6rem auto 2rem' }}
+                    >
+                        <p>Tap here for more</p>
+                    </div>
                 </div>
 
-                <div id="gallery-section">
+                <div id="gallery-section" ref={gallerySectionRef}>
                     <h1>Some Pictures of CTS</h1>
                 </div>
 

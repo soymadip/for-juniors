@@ -151,6 +151,15 @@ p {
     margin: 0;
 }
 
+.scroll-indicator.small {
+    padding: .4rem 1.5rem;
+    margin-top: 1rem;
+}
+
+.scroll-indicator.small p {
+    font-size: 1rem;
+}
+
 @keyframes pulse {
     0% {
         transform: rotate(2deg) scale(1);
