@@ -201,17 +201,7 @@ const Home = () => {
                     </Slider>
                 </div>
 
-                <div className="more-videos">
-                    <p>Ekhono gift chai?</p>
-                </div>
 
-                <div className="more-videos2">
-                    <p>Ekhono Scroll korchis?</p>
-                </div>
-
-                <div className="more-videos3">
-                    <p>Thik ache, Ei ne Gift</p>
-                </div>
 
                 <div className="gift-popup" onClick={handleGiftClick}>
                     <img src={`${BASE_URL}gift.png`} alt="gift-box" />

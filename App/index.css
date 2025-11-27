@@ -325,26 +325,7 @@ p {
     z-index: 10;
 }
 
-/* More Videos Sections */
-.more-videos,
-.more-videos2,
-.more-videos3 {
-    min-height: 70vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: var(--font-primary);
-    font-size: min(12vw, 12rem);
-    color: var(--color-white);
-    text-shadow: 3px 3px 0px var(--color-red);
-}
 
-.more-videos p,
-.more-videos2 p,
-.more-videos3 p {
-    font-size: inherit;
-    margin: 0;
-}
 
 /* Gift Popup */
 .gift-popup {
