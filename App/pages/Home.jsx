@@ -7,6 +7,7 @@ const BASE_URL = import.meta.env.BASE_URL;
 
 const Home = () => {
     const [showModal, setShowModal] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
     const [showGiftMessage, setShowGiftMessage] = useState(false);
     const videoRef = useRef(null);
     const memesSectionRef = useRef(null);
@@ -59,21 +60,37 @@ const Home = () => {
     };
 
     const handleCloseModal = () => {
-        setShowModal(false);
-        if (videoRef.current) {
-            videoRef.current.pause();
-            videoRef.current.currentTime = 0;
-        }
+        setIsClosing(true);
+        setTimeout(() => {
+            setShowModal(false);
+            setIsClosing(false);
+            if (videoRef.current) {
+                videoRef.current.pause();
+                videoRef.current.currentTime = 0;
+            }
+        }, 300); // Match animation duration
     };
 
     useEffect(() => {
+        let autoCloseTimer;
+
         if (showModal) {
             document.body.classList.add("no-scroll");
             document.documentElement.classList.add("no-scroll");
             if (videoRef.current) {
                 videoRef.current.currentTime = 0;
-                videoRef.current.play();
+                // Delay video playback by 1 second to let opening animation complete
+                setTimeout(() => {
+                    if (videoRef.current) {
+                        videoRef.current.play();
+                    }
+                }, 1000);
             }
+
+            // Auto-close modal after 15 seconds
+            autoCloseTimer = setTimeout(() => {
+                handleCloseModal();
+            }, 15000);
         } else {
             document.body.classList.remove("no-scroll");
             document.documentElement.classList.remove("no-scroll");
@@ -82,6 +99,10 @@ const Home = () => {
         return () => {
             document.body.classList.remove("no-scroll");
             document.documentElement.classList.remove("no-scroll");
+            // Clear auto-close timer on cleanup
+            if (autoCloseTimer) {
+                clearTimeout(autoCloseTimer);
+            }
         };
     }, [showModal]);
 
@@ -200,7 +221,7 @@ const Home = () => {
                 {showModal && (
                     <div
                         id="gift-modal"
-                        className="modal"
+                        className={`modal ${isClosing ? 'closing' : ''}`}
                         style={{ display: "block" }}
                         onClick={(e) => {
                             if (e.target.id === "gift-modal") handleCloseModal();
