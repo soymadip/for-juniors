@@ -11,7 +11,7 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "bun i && vite",
     "build": "bun i && vite build",
     "preview": "vite preview"
   },
