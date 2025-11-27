@@ -113,26 +113,33 @@ p {
 
 .hero-text {
     font-family: var(--font-secondary);
-    font-size: min(10vw, 5rem);
+    font-size: min(9vw, 5rem);
     color: var(--color-yellow);
     text-shadow: 4px 4px 0px #000;
     transform: rotate(-5deg);
     margin: 2rem 0 0.5rem;
 }
 
+.welcomeText {
+    color: orange;
+}
+
 .scroll-indicator {
     margin-top: 2rem;
     cursor: pointer;
     background: var(--color-blue);
-    padding: 1rem 2rem;
+    padding: .6rem 2.5rem;
     border: 3px solid #000;
     box-shadow: 5px 5px 0px #000;
     transform: rotate(2deg);
-    transition: transform 0.2s;
+    animation: rotate-zoom 2s infinite;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
+/* Changed the animation to trigger only on hover */
 .scroll-indicator:hover {
-    transform: rotate(0deg) scale(1.05);
+    transform: rotate(5deg) scale(1.1);
+    box-shadow: 5px 5px 10px #fff;
 }
 
 .scroll-indicator p {
@@ -142,14 +149,62 @@ p {
     margin: 0;
 }
 
+@keyframes pulse {
+    0% {
+        transform: rotate(2deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(2deg) scale(1.1);
+    }
+
+    100% {
+        transform: rotate(2deg) scale(1);
+    }
+}
+
+/* Updated animation for the scroll indicator */
+@keyframes rotate-zoom {
+    0% {
+        transform: rotate(2deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(5deg) scale(1.1);
+    }
+
+    100% {
+        transform: rotate(2deg) scale(1);
+    }
+}
+
+/* Reduced the intensity of the white shadow during zoom */
+@keyframes rotate-zoom-shadow {
+    0% {
+        transform: rotate(2deg) scale(1);
+        box-shadow: 5px 5px 0px #000;
+    }
+
+    50% {
+        transform: rotate(5deg) scale(1.1);
+        box-shadow: 5px 5px 10px #fff;
+    }
+
+    100% {
+        transform: rotate(2deg) scale(1);
+        box-shadow: 5px 5px 0px #000;
+    }
+}
+
 /* Memes Section */
 #memes-section {
     margin: 4rem 0;
     position: relative;
+    scroll-padding-top: 10%;
 }
 
 #memes-section h1 {
-    font-size: 4rem;
+    font-size: 2.5rem;
     color: var(--color-pink);
     transform: rotate(-2deg);
 }
@@ -309,6 +364,18 @@ footer a:hover {
 
     60% {
         transform: translateY(-15px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
     }
 }
 

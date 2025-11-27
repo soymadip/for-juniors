@@ -9,9 +9,11 @@ const Home = () => {
     const memesSectionRef = useRef(null);
 
     const handleScrollClick = () => {
-        memesSectionRef.current?.scrollIntoView({
+        const headerHeight = document.querySelector("header").offsetHeight + 40; // Add extra offset to ensure no overlap
+        const memesSectionTop = memesSectionRef.current.offsetTop; // Get the top position of the memes section
+        window.scrollTo({
+            top: memesSectionTop - headerHeight, // Scroll to the memes section with an adjusted offset
             behavior: "smooth",
-            block: "start",
         });
     };
 
@@ -73,15 +75,15 @@ const Home = () => {
             <main>
                 <div className="more">
                     <div className="content-wrapper">
-                        <h1 className="hero-text">Aro gift lagbe?</h1>
-                        <img src={`${BASE_URL}character.png`} width="250px" style={{ filter: 'drop-shadow(4px 4px 0px #000) drop-shadow(0 0 0.5px rgba(255,255,255,0.5))' }} />
+                        <h1 className="hero-text"><b>Hello Juniors</b> <p className="welcomeText">Welcome to abroad</p ></h1>
+                        <img src={`${BASE_URL}character.png`} width="230px" style={{ filter: 'drop-shadow(4px 4px 0px #000) drop-shadow(0 0 0.5px rgba(255,255,255,0.5))' }} />
 
                         <div
                             className="scroll-indicator"
                             role="button"
                             onClick={handleScrollClick}
                         >
-                            <p>Then Tap here</p>
+                            <p>Tap here</p>
                         </div>
                     </div>
                 </div>
