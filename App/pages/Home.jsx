@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import MobileWarning from "../components/MobileWarning";
 
 const BASE_URL = import.meta.env.BASE_URL;
 
@@ -294,6 +296,8 @@ const Home = () => {
                     Made with ❤️ by <a href="https://soymadip.github.io">Soumadip</a>
                 </p>
             </footer>
+
+            <MobileWarning />
         </>
     );
 };
