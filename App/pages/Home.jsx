@@ -9,9 +9,12 @@ const Home = () => {
     const [showModal, setShowModal] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [giftViewed, setGiftViewed] = useState(false);
+    const [showGiftMessage, setShowGiftMessage] = useState(false);
     const videoRef = useRef(null);
     const memesSectionRef = useRef(null);
     const gallerySectionRef = useRef(null);
+    const giftSectionRef = useRef(null);
+    const footerRef = useRef(null);
 
     const settings = {
         dots: true,
@@ -64,6 +67,17 @@ const Home = () => {
         });
     };
 
+    const handleGiftScrollClick = () => {
+        const footerTop = footerRef.current.offsetTop;
+        const windowHeight = window.innerHeight;
+        const footerHeight = footerRef.current.offsetHeight;
+
+        window.scrollTo({
+            top: footerTop - windowHeight + footerHeight,
+            behavior: "smooth",
+        });
+    };
+
     const handleGiftClick = () => {
         setShowModal(true);
         setShowGiftMessage(false);
@@ -97,10 +111,10 @@ const Home = () => {
                 }, 1000);
             }
 
-            // Auto-close modal after 15 seconds
+            // Auto-close modal after 17 seconds
             autoCloseTimer = setTimeout(() => {
                 handleCloseModal();
-            }, 15000);
+            }, 17000);
         } else {
             document.body.classList.remove("no-scroll");
             document.documentElement.classList.remove("no-scroll");
@@ -220,11 +234,21 @@ const Home = () => {
                     </Slider>
                 </div>
 
+                <div
+                    className="scroll-indicator small orange"
+                    role="button"
+                    onClick={handleGiftScrollClick}
+                    style={{ margin: '-1.9rem auto 2rem' }}
+                >
+                    <p>Er Ekta last Gift!</p>
+                </div>
 
-
-                <div className="gift-popup" onClick={handleGiftClick}>
-                    <img src={`${BASE_URL}gift.png`} alt="gift-box" />
-                    <p>Click kor ekhane</p>
+                <div id="gift-section" ref={giftSectionRef}>
+                    <h1>The Special Gift <big>❤</big></h1>
+                    <div className={`gift-popup ${!giftViewed ? 'bouncing' : ''}`} onClick={handleGiftClick}>
+                        <img src={`${BASE_URL}gift.png`} alt="gift-box" />
+                        <p>Click kor ekhane</p>
+                    </div>
                 </div>
 
                 {showModal && (
@@ -265,7 +289,7 @@ const Home = () => {
                 )}
             </main>
 
-            <footer>
+            <footer ref={footerRef}>
                 <p>
                     Made with ❤️ by <a href="https://soymadip.github.io">Soumadip</a>
                 </p>
