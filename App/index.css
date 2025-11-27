@@ -113,15 +113,16 @@ p {
 
 .hero-text {
     font-family: var(--font-secondary);
-    font-size: min(9vw, 5rem);
+    font-size: min(12.2vw, 10.2rem);
     color: var(--color-yellow);
     text-shadow: 4px 4px 0px #000;
     transform: rotate(-5deg);
-    margin: 2rem 0 0.5rem;
+    margin: -2rem 0 0.5rem;
 }
 
 .welcomeText {
     color: orange;
+    font-size: min(6vw, 4rem);
 }
 
 .scroll-indicator {
@@ -204,13 +205,14 @@ p {
 }
 
 #memes-section h1 {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     color: var(--color-pink);
     transform: rotate(-2deg);
 }
 
 #memes-section p {
     color: var(--color-yellow);
+    font-size: .8rem;
     font-family: var(--font-secondary);
 }
 
@@ -244,14 +246,21 @@ p {
 .more-videos,
 .more-videos2,
 .more-videos3 {
-    min-height: 40vh;
+    min-height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: var(--font-primary);
-    font-size: min(8vw, 4rem);
+    font-size: min(12vw, 12rem);
     color: var(--color-white);
     text-shadow: 3px 3px 0px var(--color-red);
+}
+
+.more-videos p,
+.more-videos2 p,
+.more-videos3 p {
+    font-size: inherit;
+    margin: 0;
 }
 
 /* Gift Popup */
@@ -326,14 +335,15 @@ p {
 /* Footer */
 footer {
     margin-top: 50px;
-    padding: 20px;
+    padding: 8px;
     background: #000;
-    border-top: 4px solid var(--color-white);
+    border-top: 2px solid var(--color-white);
 }
 
 footer p {
     color: var(--color-white);
     font-family: var(--font-text);
+    font-size: 12px !important;
 }
 
 footer a {

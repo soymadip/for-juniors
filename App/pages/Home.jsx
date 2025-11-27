@@ -9,7 +9,7 @@ const Home = () => {
     const memesSectionRef = useRef(null);
 
     const handleScrollClick = () => {
-        const headerHeight = document.querySelector("header").offsetHeight + 40; // Add extra offset to ensure no overlap
+        const headerHeight = document.querySelector("header").offsetHeight + 60; // Add extra offset to ensure no overlap
         const memesSectionTop = memesSectionRef.current.offsetTop; // Get the top position of the memes section
         window.scrollTo({
             top: memesSectionTop - headerHeight, // Scroll to the memes section with an adjusted offset
@@ -75,8 +75,13 @@ const Home = () => {
             <main>
                 <div className="more">
                     <div className="content-wrapper">
-                        <h1 className="hero-text"><b>Hello Juniors</b> <p className="welcomeText">Welcome to abroad</p ></h1>
-                        <img src={`${BASE_URL}character.png`} width="230px" style={{ filter: 'drop-shadow(4px 4px 0px #000) drop-shadow(0 0 0.5px rgba(255,255,255,0.5))' }} />
+                        <h1 className="hero-text">
+                            <b>Hello Juniors</b>
+                            <p className="welcomeText">
+                                Welcome to abroad
+                            </p >
+                        </h1>
+                        <img src={`${BASE_URL}character.png`} width="210px" style={{ filter: 'drop-shadow(4px 4px 0px #000) drop-shadow(0 0 0.5px rgba(255,255,255,0.5))' }} />
 
                         <div
                             className="scroll-indicator"
@@ -89,15 +94,15 @@ const Home = () => {
                 </div>
 
                 <div id="memes-section" ref={memesSectionRef}>
-                    <h1>Memes You can relate</h1>
+                    <h1>Some Memes for You</h1>
                     <p>( laugh now, you will relate later 😁 )</p>
                 </div>
 
                 <div className="gallery">
-                    <img src={`${BASE_URL}meme/meme.jpeg`} alt="Meme 1" />
-                    <img src={`${BASE_URL}meme/2.jpg`} alt="Meme 2" />
-                    <img src={`${BASE_URL}meme/3.jpg`} alt="Meme 3" />
-                    <img src={`${BASE_URL}meme/4.jpg`} alt="Meme 4" />
+                    <img src={`${BASE_URL}meme/1.png`} alt="Meme 1" />
+                    <img src={`${BASE_URL}meme/2.png`} alt="Meme 2" />
+                    <img src={`${BASE_URL}meme/3.png`} alt="Meme 3" />
+                    <img src={`${BASE_URL}meme/4.png`} alt="Meme 4" />
                 </div>
 
                 <div className="more-videos">
@@ -157,15 +162,7 @@ const Home = () => {
 
             <footer>
                 <p>
-                    Made by <a href="https://github.com/soymadip">Soumadip</a> with ❤️ |
-                    <a
-                        href="https://github.com/soymadip/for-juniors"
-                        target="_blank"
-                        rel="noreferrer"
-                        style={{ marginLeft: '10px' }}
-                    >
-                        Source Code
-                    </a>
+                    Made with ❤️ by <a href="https://soymadip.github.io">Soumadip</a>
                 </p>
             </footer>
         </>
