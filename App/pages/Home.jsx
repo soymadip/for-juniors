@@ -110,13 +110,13 @@ const Home = () => {
                     if (videoRef.current) {
                         videoRef.current.play();
                     }
-                }, 1000);
+                }, 400);
             }
 
             // Auto-close modal after 17 seconds
             autoCloseTimer = setTimeout(() => {
                 handleCloseModal();
-            }, 17000);
+            }, 15000);
         } else {
             document.body.classList.remove("no-scroll");
             document.documentElement.classList.remove("no-scroll");
