@@ -11,13 +11,15 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "bun i && vite --host",
     "build": "bun i && vite build",
-    "preview": "vite preview"
+    "preview": "bun build && vite preview"
   },
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^7.9.6"
+    "react-router-dom": "^7.9.6",
+    "react-slick": "^0.31.0",
+    "slick-carousel": "^1.8.1"
   }
 }

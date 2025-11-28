@@ -1,4 +1,19 @@
-/* Basic Reset */
+/* Comic Book Theme Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Permanent+Marker&family=Comic+Neue:wght@400;700&display=swap');
+
+:root {
+    --color-bg: #111;
+    --color-pink: #e91e63;
+    --color-yellow: #ffeb3b;
+    --color-blue: #2196f3;
+    --color-red: #f44336;
+    --color-orange: #ff9800;
+    --color-white: #ffffff;
+    --font-primary: 'Bangers', cursive;
+    --font-secondary: 'Permanent Marker', cursive;
+    --font-text: 'Comic Neue', cursive;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -10,13 +25,27 @@ html {
     overflow-x: hidden;
 }
 
-/* Body Styling */
 body {
-    font-family: Arial, sans-serif;
-    color: #131212;
+    font-family: var(--font-text);
+    color: var(--color-white);
     text-align: center;
-    background-color: rgba(234, 235, 149, 0.539);
+    background-color: var(--color-bg);
     overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/background.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(.5px);
+    transform: scale(1.1);
 }
 
 /* Header */
@@ -25,139 +54,425 @@ header {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 92%;
+    width: 95%;
     z-index: 1000;
-    margin: 0.3rem 0;
-    margin-top: 2vh;
+    margin-top: 1rem;
     padding: 5px;
-    background: rgba(232, 247, 243, 0.818);
-    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 3px solid var(--color-white);
+    border-radius: 1.5px;
+    box-shadow: 5px 5px 0px var(--color-pink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header img {
+    filter: drop-shadow(2px 2px 0px #000);
 }
 
 /* Main Content */
 main {
-    margin: 8vh auto 0;
+    margin: 100px auto 0;
     max-width: 1200px;
-    width: 92%;
-    border-radius: 5px;
+    width: 95%;
 }
 
-/* Section Titles */
-h2 {
-    margin: 1rem 0;
-    align-content: left;
-    scroll-margin-top: 80px;
+/* Typography */
+h1,
+h2,
+h3 {
+    font-family: var(--font-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 0px #000;
 }
 
+p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
 
-
+/* Hero Section */
 .more {
-    height: 120vh;
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: "Ga Maamli", serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: min(9rem, 8vw);
-    white-space: nowrap;
-    color: #adb41d;
-    padding-top: 60px;
-}
-
-.more-videos {
-    height: 30vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Ga Maamli", serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: min(9rem, 8vw);
-    white-space: nowrap;
-    color: #1ceba9;
-}
-
-.more-videos2 {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Ga Maamli", serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: min(9rem, 8vw);
-    white-space: nowrap;
-    color: #1ceba9;
-}
-
-.more-videos3 {
-    height: 1vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Ga Maamli", serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: min(9rem, 8vw);
-    white-space: nowrap;
-    color: #1ceba9;
-    margin-bottom: 9rem;
+    position: relative;
+    padding-bottom: 15vh;
 }
 
 .content-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -19vh;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-text {
+    font-family: var(--font-secondary);
+    font-size: min(12.2vw, 10.2rem);
+    color: var(--color-yellow);
+    text-shadow: 4px 4px 0px #000;
+    transform: rotate(-5deg);
+    margin: -3.5rem 0 0.5rem;
+    margin-bottom: 2.7rem;
+}
+
+.welcomeText {
+    color: orange;
+    font-size: min(6vw, 4rem);
 }
 
 .scroll-indicator {
-    font-size: 1.1rem;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.2rem;
-    margin-top: auto;
-    padding: 2rem;
+    margin-top: 2rem;
     cursor: pointer;
-    width: 100%;
-    max-width: 300px;
+    background: var(--color-blue);
+    padding: .6rem 2.5rem;
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px #000;
+    transform: rotate(2deg);
+    animation: rotate-zoom 2s infinite;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Changed the animation to trigger only on hover */
+.scroll-indicator:hover {
+    transform: rotate(5deg) scale(1.1);
+    box-shadow: 5px 5px 10px #fff;
 }
 
 .scroll-indicator p {
-    animation: fadeInOut 2s infinite;
-    opacity: 0.7;
-    padding: 0.5rem 1.7rem;
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: #000;
+    margin: 0;
 }
 
-@keyframes fadeInOut {
+.scroll-indicator.small {
+    padding: .4rem 1rem;
+    margin-top: 1rem;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-    0%,
-    100% {
-        opacity: 0.4;
+.scroll-indicator.small p {
+    font-size: 1rem;
+}
+
+.scroll-indicator.red {
+    background: var(--color-red);
+}
+
+.scroll-indicator.orange {
+    background: var(--color-orange);
+}
+
+@keyframes pulse {
+    0% {
+        transform: rotate(2deg) scale(1);
     }
 
     50% {
-        opacity: 1;
+        transform: rotate(2deg) scale(1.1);
+    }
+
+    100% {
+        transform: rotate(2deg) scale(1);
     }
 }
 
-@keyframes arrowBounce {
-
-    0%,
-    100% {
-        transform: translateY(0) rotate(45deg);
-        opacity: 0.4;
+/* Updated animation for the scroll indicator */
+@keyframes rotate-zoom {
+    0% {
+        transform: rotate(2deg) scale(1);
     }
 
     50% {
-        transform: translateY(10px) rotate(45deg);
-        opacity: 1;
+        transform: rotate(5deg) scale(1.1);
+    }
+
+    100% {
+        transform: rotate(2deg) scale(1);
     }
 }
 
+/* Reduced the intensity of the white shadow during zoom */
+@keyframes rotate-zoom-shadow {
+    0% {
+        transform: rotate(2deg) scale(1);
+        box-shadow: 5px 5px 0px #000;
+    }
+
+    50% {
+        transform: rotate(5deg) scale(1.1);
+        box-shadow: 5px 5px 10px #fff;
+    }
+
+    100% {
+        transform: rotate(2deg) scale(1);
+        box-shadow: 5px 5px 0px #000;
+    }
+}
+
+/* Meme Wrapper */
+.meme-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Memes Section */
+#memes-section {
+    scroll-padding-top: 10%;
+}
+
+#memes-section h1 {
+    font-size: 2.4rem;
+    color: var(--color-pink);
+}
+
+#memes-section p {
+    color: var(--color-yellow);
+    font-size: .8rem;
+    font-family: var(--font-secondary);
+}
+
+/* Gallery Section */
+#gallery-section {
+    scroll-padding-top: 10%;
+    margin-bottom: 0.4rem;
+}
+
+#gallery-section h1 {
+    font-size: 2.4rem;
+    color: var(--color-blue);
+}
+
+/* Gallery Carousel */
+.carousel-container {
+    width: 90%;
+    margin: 0 auto 5rem;
+    padding: 10px;
+}
+
+.carousel-slide {
+    padding: 10px;
+    outline: none;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-slide img {
+    border: 1px solid #000;
+    width: auto;
+    max-width: 100%;
+    max-height: 80vh;
+    margin: 0 auto;
+    box-shadow: 8px 8px 0px var(--color-blue);
+    transition: transform 0.2s;
+    background: #fff;
+    padding: 5px;
+}
+
+.carousel-slide img:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 10px 10px 0px var(--color-pink);
+}
+
+/* Customizing Slick Dots */
+.slick-track {
+    display: flex;
+    align-items: center;
+}
+
+.slick-dots li button:before {
+    font-size: 12px;
+    color: var(--color-white);
+    opacity: 0.5;
+}
+
+.slick-dots li.slick-active button:before {
+    color: var(--color-yellow);
+    opacity: 1;
+}
+
+/* Customizing Slick Arrows */
+.slick-prev:before,
+.slick-next:before {
+    color: var(--color-pink);
+    font-size: 30px;
+    opacity: 1;
+    text-shadow: 2px 2px 0px #000;
+}
+
+.slick-prev {
+    left: -35px;
+}
+
+.slick-next {
+    right: -35px;
+}
+
+/* Gallery (Memes) */
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 5rem;
+}
+
+.gallery img {
+    border: 4px solid #000;
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    box-shadow: 8px 8px 0px var(--color-blue);
+    transition: transform 0.2s;
+    background: #fff;
+    padding: 5px;
+}
+
+.gallery img:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 10px 10px 0px var(--color-pink);
+    z-index: 10;
+}
+
+
+
+/* Gift Popup */
+#gift-section {
+    scroll-padding-top: 10%;
+    margin-bottom: 2rem;
+    text-align: center;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#gift-section h1 {
+    margin-top: 25vh;
+    font-size: 2.4rem;
+    color: var(--color-red);
+    margin-bottom: 1rem;
+}
+
+.gift-popup {
+    margin: 2rem auto;
+    cursor: pointer;
+    animation: bounce 2s infinite;
+    display: inline-block;
+}
+
+.gift-popup img {
+    width: 150px;
+    filter: drop-shadow(5px 5px 0px rgba(0, 0, 0, 0.5));
+}
+
+.gift-popup p {
+    font-family: var(--font-secondary);
+    color: var(--color-yellow);
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(5px);
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+
+
+.modal.closing {
+    animation: modalFadeOut 0.3s ease-out;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    background-color: var(--color-white);
+    border: 4px solid #000;
+    box-shadow: 10px 10px 0px var(--color-pink);
+    animation: modalContentScaleIn 0.3s ease-out;
+}
+
+.modal.closing .modal-content {
+    animation: modalContentScaleOut 0.3s ease-out;
+}
+
+.modal-content video {
+    width: 100%;
+    border: 3px solid #000;
+}
+
+.close-button {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: var(--color-red);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid #000;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-family: var(--font-primary);
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    padding: 8px;
+    padding-bottom: 12px;
+    background: #000;
+    border-top: 2px solid var(--color-white);
+}
+
+footer p {
+    color: var(--color-white);
+    font-family: var(--font-text);
+    font-size: 12px !important;
+}
+
+footer a {
+    color: var(--color-yellow);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    color: var(--color-pink);
+    text-decoration: underline;
+}
+
+/* Animations */
 @keyframes bounce {
 
     0%,
@@ -169,270 +484,59 @@ h2 {
     }
 
     40% {
-        transform: translateY(-30px);
+        transform: translateY(-10px);
     }
 
     60% {
-        transform: translateY(-15px);
+        transform: translateY(-5px);
     }
 }
 
-#memes-section {
-    margin: 1rem;
-    padding-top: 10vh;
-}
+/* Modal Animations */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
 
-#memes-section h1 {
-    font-size: 3.1rem;
-    text-decoration: underline #adb41d;
-    margin-bottom: 1vh;
-}
-
-#memes-section p {
-    color: rgba(78, 108, 67, 0.721);
-    font-size: 11px;
-    margin-bottom: 3rem;
-}
-
-/* Gallery Styling */
-.gallery {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 15rem;
-}
-
-.gallery img {
-    border: #d94826 solid;
-    align-content: center;
-    max-width: 300px;
-    max-height: max-content;
-    border-radius: 10px;
-    transition: transform 0.2s;
-}
-
-.gallery img:hover,
-.video-gallery video:hover {
-    transform: scale(1.1);
-    box-shadow: #adb41d 0px 0px 10px;
-}
-
-.scroll-indicator-videos {
-    display: none;
-}
-
-.arrow {
-    width: 30px;
-    height: 30px;
-    border-right: 4px solid #131212;
-    border-bottom: 4px solid #131212;
-    transform: rotate(45deg);
-    animation: arrowBounce 2s infinite;
-    margin: 1rem;
-}
-
-.video-gallery-page-wrapper {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1rem;
-}
-
-.video-gallery-container {
-    max-width: 900px;
-    width: 90%;
-    margin: 0 auto;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-@media (min-width: 768px) {
-    .video-gallery-container {
-        margin-left: auto;
-        margin-right: auto;
+    to {
+        opacity: 1;
     }
 }
 
-.video-gallery-h2 {
-    font-family: "Ga Maamli", serif;
-    font-size: 3rem;
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-    padding-top: 0;
-    text-decoration: none;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+@keyframes modalFadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
 
-.video-gallery-p {
-    font-family: "Comic Neue", cursive;
-    color: #4a5568;
-    font-size: 1.2rem;
-    margin-bottom: 2.5rem;
-    line-height: 1.6;
-    font-weight: 700;
+@keyframes modalContentScaleIn {
+    from {
+        transform: translate(-50%, -50%) scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
 }
 
-.video-gallery-p a {
-    text-decoration: none;
-    color: #e67e22;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
+@keyframes modalContentScaleOut {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
 
-.video-gallery-p a:hover {
-    color: #d35400;
-    text-decoration: underline;
-}
-
-.video-gallery {
-    position: relative;
-    padding-bottom: 56.25%;
-    /* 16:9 */
-    height: 0;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-}
-
-.video-gallery:hover {
-    transform: scale(1.02);
-}
-
-.video-gallery iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    width: 80%;
-    max-width: 500px;
-    background-color: #408797;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.modal-content video {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    border: 2px solid #808319;
-}
-
-.modal-content p {
-    margin-top: 10px;
-    font-family: "Comic Neue", serif;
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: #3e4214;
-}
-
-.close-button {
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    font-size: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    background-color: rgb(123, 210, 133);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.gift-popup {
-    margin-top: 25vh;
-    margin-bottom: 10rem;
-    animation: bounce 2s infinite;
-    cursor: pointer;
-}
-
-.gift-popup p {
-    color: #1ceba9;
-    font-family: "Ga Maamli", serif;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-footer {
-    margin-top: 30px;
-    padding: 6px;
-    background: rgba(255, 255, 255, 0.77);
-    font-size: 12px;
-    border-radius: 5px;
-}
-
-footer a {
-    color: #533110;
+    to {
+        transform: translate(-50%, -50%) scale(0.7);
+        opacity: 0;
+    }
 }
 
 .no-scroll {
     overflow: hidden !important;
-    position: fixed !important;
-    width: 100% !important;
-    height: 100% !important;
-}
-
-html.no-scroll {
-    overflow: hidden !important;
-}
-
-@media (max-width: 768px) {
-    .more {
-        font-size: min(12vw, 3rem);
-        white-space: normal;
-    }
-
-    .more-videos,
-    .more-videos2,
-    .more-videos3 {
-        font-size: min(12vw, 3rem);
-        white-space: normal;
-    }
-
-    .modal-content {
-        width: 95%;
-        padding: 15px;
-    }
-
-    .close-button {
-        top: -15px;
-        right: -10px;
-        width: 35px;
-        height: 35px;
-        font-size: 24px;
-    }
 }

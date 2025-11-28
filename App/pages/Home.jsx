@@ -1,17 +1,82 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import MobileWarning from "../components/MobileWarning";
 
 const BASE_URL = import.meta.env.BASE_URL;
 
 const Home = () => {
     const [showModal, setShowModal] = useState(false);
+    const [isClosing, setIsClosing] = useState(false);
+    const [giftViewed, setGiftViewed] = useState(false);
     const [showGiftMessage, setShowGiftMessage] = useState(false);
     const videoRef = useRef(null);
     const memesSectionRef = useRef(null);
+    const gallerySectionRef = useRef(null);
+    const giftSectionRef = useRef(null);
+    const footerRef = useRef(null);
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
+
+    const memeSettings = {
+        ...settings,
+        autoplaySpeed: 7000
+    };
 
     const handleScrollClick = () => {
-        memesSectionRef.current?.scrollIntoView({
+        const headerHeight = document.querySelector("header").offsetHeight + 60; // Add extra offset to ensure no overlap
+        const memesSectionTop = memesSectionRef.current.offsetTop; // Get the top position of the memes section
+        window.scrollTo({
+            top: memesSectionTop - headerHeight, // Scroll to the memes section with an adjusted offset
             behavior: "smooth",
-            block: "start",
+        });
+    };
+
+    const handleGalleryScrollClick = () => {
+        const headerHeight = document.querySelector("header").offsetHeight + 60;
+        const gallerySectionTop = gallerySectionRef.current.offsetTop;
+        window.scrollTo({
+            top: gallerySectionTop - headerHeight,
+            behavior: "smooth",
+        });
+    };
+
+    const handleGiftScrollClick = () => {
+        const footerTop = footerRef.current.offsetTop;
+        const windowHeight = window.innerHeight;
+        const footerHeight = footerRef.current.offsetHeight;
+
+        window.scrollTo({
+            top: footerTop - windowHeight + footerHeight,
+            behavior: "smooth",
         });
     };
 
@@ -21,21 +86,37 @@ const Home = () => {
     };
 
     const handleCloseModal = () => {
-        setShowModal(false);
-        if (videoRef.current) {
-            videoRef.current.pause();
-            videoRef.current.currentTime = 0;
-        }
+        setIsClosing(true);
+        setTimeout(() => {
+            setShowModal(false);
+            setIsClosing(false);
+            if (videoRef.current) {
+                videoRef.current.pause();
+                videoRef.current.currentTime = 0;
+            }
+        }, 300); // Match animation duration
     };
 
     useEffect(() => {
+        let autoCloseTimer;
+
         if (showModal) {
             document.body.classList.add("no-scroll");
             document.documentElement.classList.add("no-scroll");
             if (videoRef.current) {
                 videoRef.current.currentTime = 0;
-                videoRef.current.play();
+                // Delay video playback by 1 second to let opening animation complete
+                setTimeout(() => {
+                    if (videoRef.current) {
+                        videoRef.current.play();
+                    }
+                }, 400);
             }
+
+            // Auto-close modal after 17 seconds
+            autoCloseTimer = setTimeout(() => {
+                handleCloseModal();
+            }, 15000);
         } else {
             document.body.classList.remove("no-scroll");
             document.documentElement.classList.remove("no-scroll");
@@ -44,6 +125,10 @@ const Home = () => {
         return () => {
             document.body.classList.remove("no-scroll");
             document.documentElement.classList.remove("no-scroll");
+            // Clear auto-close timer on cleanup
+            if (autoCloseTimer) {
+                clearTimeout(autoCloseTimer);
+            }
         };
     }, [showModal]);
 
@@ -59,71 +144,119 @@ const Home = () => {
     return (
         <>
             <header>
-                <img src={`${BASE_URL}cts.png`} width="55px" alt="" />
-                <br />
-                <div>
-                    <img src={`${BASE_URL}dcst.png`} width="33px" />
-                    <img src={`${BASE_URL}c.png`} width="32px" />
-                    <img src={`${BASE_URL}js.png`} width="30px" />
-                    <img src={`${BASE_URL}12.png`} width="31px" />
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <img src={`${BASE_URL}cts.png`} width="45px" alt="CTS Logo" style={{ filter: 'drop-shadow(2px 2px 0px #000)' }} />
+                    <div style={{ marginTop: '5px', display: 'flex', gap: '5px' }}>
+                        <img src={`${BASE_URL}dcst.png`} width="22px" alt="DCST Logo" style={{ filter: 'drop-shadow(2px 2px 0px #000)' }} />
+                        <img src={`${BASE_URL}c.png`} width="22px" alt="C Logo" style={{ filter: 'drop-shadow(2px 2px 0px #000)' }} />
+                        <img src={`${BASE_URL}js.png`} width="22px" alt="JS Logo" style={{ filter: 'drop-shadow(2px 2px 0px #000)' }} />
+                        <img src={`${BASE_URL}12.png`} width="22px" alt="12 Logo" style={{ filter: 'drop-shadow(2px 2px 0px #000)' }} />
+                    </div>
                 </div>
             </header>
 
             <main>
                 <div className="more">
                     <div className="content-wrapper">
-                        <img src={`${BASE_URL}character.png`} width="200px" />
-                        <p>Aro&nbsp;gift&nbsp;lagbe?</p>
-                        <p>&nbsp;</p>
-                        <br />
+                        <h1 className="hero-text">
+                            <b>Hello Juniors</b>
+                            <p className="welcomeText">
+                                Welcome to abroad
+                            </p >
+                        </h1>
+                        <img src={`${BASE_URL}character.png`} width="210px" style={{ filter: 'drop-shadow(4px 4px 0px #000) drop-shadow(0 0 0.5px rgba(255,255,255,0.5))' }} />
+
                         <div
                             className="scroll-indicator"
                             role="button"
-                            style={{ cursor: "pointer" }}
                             onClick={handleScrollClick}
                         >
-                            <p>Then Tap here</p>
-                            <div className="arrow"></div>
+                            <p>Tap here</p>
                         </div>
                     </div>
                 </div>
 
-                <div id="memes-section" ref={memesSectionRef}>
-                    <p>
-                        <br />
-                    </p>
-                    <h1>Memes You can relate</h1>
-                    <p>( laugh now, you will relate later 😁 )</p>
-                </div>
-                <div className="gallery">
-                    <img src={`${BASE_URL}meme/meme.jpeg`} alt="Meme 1" />
-                    <img src={`${BASE_URL}meme/2.jpg`} alt="Meme 2" />
-                    <img src={`${BASE_URL}meme/3.jpg`} alt="Meme 3" />
-                    <img src={`${BASE_URL}meme/4.jpg`} alt="Meme 3" />
-                    <img src={`${BASE_URL}meme/5.jpg`} alt="Meme 5" />
+                <div className="meme-wrapper">
+                    <div id="memes-section" ref={memesSectionRef}>
+                        <h1>Some Memes for You</h1>
+                        <p>( laugh now, you will relate later 😁 )</p>
+                    </div>
+
+                    <div className="carousel-container">
+                        <Slider {...memeSettings}>
+                            <div className="carousel-slide">
+                                <img src={`${BASE_URL}meme/1.png`} alt="Meme 1" />
+                            </div>
+                            <div className="carousel-slide">
+                                <img src={`${BASE_URL}meme/2.png`} alt="Meme 2" />
+                            </div>
+                            <div className="carousel-slide">
+                                <img src={`${BASE_URL}meme/3.png`} alt="Meme 3" />
+                            </div>
+                            <div className="carousel-slide">
+                                <img src={`${BASE_URL}meme/4.png`} alt="Meme 4" />
+                            </div>
+                        </Slider>
+                    </div>
+
+                    <div
+                        className="scroll-indicator small"
+                        role="button"
+                        onClick={handleGalleryScrollClick}
+                        style={{ margin: '-1.6rem auto 2rem' }}
+                    >
+                        <p>Tap here for more</p>
+                    </div>
                 </div>
 
-                <div className="more-videos">
-                    <p>Ekhono&nbsp;gift&nbsp;chai?</p>
+                <div id="gallery-section" ref={gallerySectionRef}>
+                    <h1>Some Pictures of CTS</h1>
                 </div>
 
-                <div className="more-videos2">
-                    <p>Ekhono&nbsp;Scroll&nbsp;korchis?</p>
+                <div className="carousel-container">
+                    <Slider {...settings}>
+                        <div className="carousel-slide">
+                            <img src={`${BASE_URL}gallery/1.jpeg`} alt="Gallery 1" />
+                        </div>
+                        <div className="carousel-slide">
+                            <img src={`${BASE_URL}gallery/2.jpeg`} alt="Gallery 2" />
+                        </div>
+                        <div className="carousel-slide">
+                            <img src={`${BASE_URL}gallery/3.jpeg`} alt="Gallery 3" />
+                        </div>
+                        <div className="carousel-slide">
+                            <img src={`${BASE_URL}gallery/4.jpeg`} alt="Gallery 4" />
+                        </div>
+                        <div className="carousel-slide">
+                            <img src={`${BASE_URL}gallery/5.jpeg`} alt="Gallery 5" />
+                        </div>
+                        <div className="carousel-slide">
+                            <img src={`${BASE_URL}gallery/6.jpeg`} alt="Gallery 6" />
+                        </div>
+                    </Slider>
                 </div>
 
-                <div className="more-videos3">
-                    <p>Thik&nbsp;ache,&nbsp;Ei&nbsp;ne&nbsp;Gift</p>
+                <div
+                    className="scroll-indicator small orange"
+                    role="button"
+                    onClick={handleGiftScrollClick}
+                    style={{ margin: '-1.9rem auto 2rem' }}
+                >
+                    <p>Er Ekta last Gift!</p>
                 </div>
 
-                <div className="gift-popup" onClick={handleGiftClick}>
-                    <img src={`${BASE_URL}gift.png`} alt="gift-box" />
-                    <p>Click kor ekhane</p>
+                <div id="gift-section" ref={giftSectionRef}>
+                    <h1>The Special Gift <big>❤</big></h1>
+                    <div className={`gift-popup ${!giftViewed ? 'bouncing' : ''}`} onClick={handleGiftClick}>
+                        <img src={`${BASE_URL}gift.png`} alt="gift-box" />
+                        <p>Click kor ekhane</p>
+                    </div>
                 </div>
 
                 {showModal && (
                     <div
                         id="gift-modal"
-                        className="modal"
+                        className={`modal ${isClosing ? 'closing' : ''}`}
                         style={{ display: "block" }}
                         onClick={(e) => {
                             if (e.target.id === "gift-modal") handleCloseModal();
@@ -147,30 +280,24 @@ const Home = () => {
                                 id="giftMessage"
                                 style={{ display: showGiftMessage ? "block" : "none" }}
                             >
-                                <p>
+                                <p style={{ color: 'var(--color-pink)', fontSize: '2rem' }}>
                                     Bhalo laglo gift?
                                     <br />
                                     😜
                                 </p>
                             </div>
                         </div>
-                        <div></div>
                     </div>
                 )}
             </main>
 
-            <footer>
+            <footer ref={footerRef}>
                 <p>
-                    Made by <a href="https://github.com/soymadip">Soumadip</a> with ❤️ |
-                    <a
-                        href="https://github.com/soymadip/for-juniors"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Source Code
-                    </a>
+                    Made with ❤️ by <a href="https://soymadip.github.io">Soumadip</a>
                 </p>
             </footer>
+
+            <MobileWarning />
         </>
     );
 };
