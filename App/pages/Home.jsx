@@ -51,7 +51,7 @@ const Home = () => {
 
     const memeSettings = {
         ...settings,
-        autoplaySpeed: 7000
+        autoplaySpeed: 9000
     };
 
     const handleScrollClick = () => {
