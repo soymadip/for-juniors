@@ -15,8 +15,11 @@ const Home = () => {
     const videoRef = useRef(null);
     const memesSectionRef = useRef(null);
     const gallerySectionRef = useRef(null);
+    const galleryViewRef = useRef(null);
     const giftSectionRef = useRef(null);
     const footerRef = useRef(null);
+    const [showMemeScroll, setShowMemeScroll] = useState(false);
+    const [showGalleryScroll, setShowGalleryScroll] = useState(false);
 
     const settings = {
         dots: true,
@@ -132,6 +135,55 @@ const Home = () => {
         };
     }, [showModal]);
 
+    useEffect(() => {
+        let memeTimeout;
+        let galleryTimeout;
+
+        const observerOptions = {
+            threshold: 0.1,
+        };
+
+        const memeObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    memeTimeout = setTimeout(() => {
+                        setShowMemeScroll(true);
+                    }, 2000);
+                } else {
+                    clearTimeout(memeTimeout);
+                    setShowMemeScroll(false);
+                }
+            });
+        }, observerOptions);
+
+        const galleryObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    galleryTimeout = setTimeout(() => {
+                        setShowGalleryScroll(true);
+                    }, 2000);
+                } else {
+                    clearTimeout(galleryTimeout);
+                    setShowGalleryScroll(false);
+                }
+            });
+        }, observerOptions);
+
+        if (memesSectionRef.current) {
+            memeObserver.observe(memesSectionRef.current);
+        }
+        if (galleryViewRef.current) {
+            galleryObserver.observe(galleryViewRef.current);
+        }
+
+        return () => {
+            if (memesSectionRef.current) memeObserver.unobserve(memesSectionRef.current);
+            if (galleryViewRef.current) galleryObserver.unobserve(galleryViewRef.current);
+            clearTimeout(memeTimeout);
+            clearTimeout(galleryTimeout);
+        };
+    }, []);
+
     const handleTimeUpdate = () => {
         if (
             videoRef.current &&
@@ -203,7 +255,12 @@ const Home = () => {
                         className="scroll-indicator small"
                         role="button"
                         onClick={handleGalleryScrollClick}
-                        style={{ margin: '-1.6rem auto 2rem' }}
+                        style={{
+                            margin: '-1.6rem auto 2rem',
+                            opacity: showMemeScroll ? 1 : 0,
+                            transition: 'opacity 0.5s ease-in-out',
+                            pointerEvents: showMemeScroll ? 'auto' : 'none'
+                        }}
                     >
                         <p>Tap here for more</p>
                     </div>
@@ -213,7 +270,7 @@ const Home = () => {
                     <h1>Some Pictures of CTS</h1>
                 </div>
 
-                <div className="carousel-container">
+                <div className="carousel-container" ref={galleryViewRef}>
                     <Slider {...settings}>
                         <div className="carousel-slide">
                             <img src={`${BASE_URL}gallery/1.jpeg`} alt="Gallery 1" />
@@ -240,7 +297,12 @@ const Home = () => {
                     className="scroll-indicator small orange"
                     role="button"
                     onClick={handleGiftScrollClick}
-                    style={{ margin: '-1.9rem auto 2rem' }}
+                    style={{
+                        margin: '-1.9rem auto 2rem',
+                        opacity: showGalleryScroll ? 1 : 0,
+                        transition: 'opacity 0.5s ease-in-out',
+                        pointerEvents: showGalleryScroll ? 'auto' : 'none'
+                    }}
                 >
                     <p>Er Ekta last Gift!</p>
                 </div>
