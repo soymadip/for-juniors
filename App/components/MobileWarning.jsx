@@ -57,7 +57,7 @@ const MobileWarning = () => {
                         <h2>Wait a minute! </h2>
                         <p><b>This website is made for mobile devices.</b></p>
                         <p>Please <b>open it on your phone</b> for the best experience!</p>
-                        <button onClick={() => window.location.reload()}>
+                        <button onClick={() => window.location.href = 'https://soymadip.github.io'}>
                             Okay, I understand
                         </button>
                         <p
